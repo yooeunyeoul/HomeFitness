@@ -64,7 +64,6 @@ fun N_riseTheme(
 
     MaterialTheme(
         colorScheme = colorScheme,
-        typography = Typography,
         content = content
     )
 }
