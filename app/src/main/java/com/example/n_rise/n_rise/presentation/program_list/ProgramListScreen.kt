@@ -45,6 +45,8 @@ import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.example.n_rise.R
 import com.example.n_rise.n_rise.common.Constants
+import com.example.n_rise.n_rise.common.Constants.PARAM_IMAGE_URL
+import com.example.n_rise.n_rise.common.Constants.PARAM_PROGRAM_ID
 import com.example.n_rise.n_rise.domain.model.Banner
 import com.example.n_rise.n_rise.presentation.Screen
 import com.example.n_rise.n_rise.presentation.program_list.components.BannerScreen
@@ -54,6 +56,8 @@ import com.example.n_rise.n_rise.presentation.program_list.components.ProgramLis
 import com.example.n_rise.ui.theme.Gray_50
 import com.example.n_rise.ui.theme.Gray_90
 import com.example.n_rise.ui.theme.nRiseTypography
+import java.net.URLEncoder
+import java.nio.charset.StandardCharsets
 
 @Composable
 fun ProgramListScreen(
@@ -117,7 +121,11 @@ fun ProgramListScreen(
 
                             ProgramListItem(
                                 onItemClick = { program ->
-                                    navController.navigate(Screen.ProgramDetailScreen.route + "?${Constants.PARAM_PROGRAM_ID}=${program?.id}")
+                                    val encodeUrl = URLEncoder.encode(
+                                        program?.image_url,
+                                        StandardCharsets.UTF_8.toString()
+                                    )
+                                    navController.navigate(Screen.ProgramDetailScreen.route+"/${encodeUrl}/${program?.category}/${program?.coachName}/${program?.title}")
                                     viewModel.changeWatchingState(program)
                                 },
                                 program = program,
