@@ -24,7 +24,7 @@ import javax.inject.Inject
 @HiltViewModel
 class ProgramListViewModel @Inject constructor(
     pager: Pager<Int, ProgramEntity>,
-    private val getBannerUseCase: GetBannerUseCase
+    getBannerUseCase: GetBannerUseCase
 ) : ViewModel() {
     private val _state = MutableStateFlow(hashMapOf<Int, Boolean>())
     val state = _state.asStateFlow()
