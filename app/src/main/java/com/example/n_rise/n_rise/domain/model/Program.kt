@@ -14,5 +14,4 @@ data class Program(
     val category: String, // 카테고리
     val title: String,// 프로그램 제목
     val status: ProgramStatus, // 프로그램 상태]
-    val isWatching: Boolean = false // 시청했는지 유무
 )

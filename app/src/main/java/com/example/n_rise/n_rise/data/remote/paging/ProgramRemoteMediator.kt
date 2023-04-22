@@ -10,6 +10,7 @@ import com.example.n_rise.n_rise.data.local.ProgramEntity
 import com.example.n_rise.n_rise.data.remote.HealthApi
 import com.example.n_rise.n_rise.data.remote.dto.toMap
 import com.example.n_rise.n_rise.data.remote.dto.toProgramEntity
+import kotlinx.coroutines.delay
 import retrofit2.HttpException
 
 @OptIn(ExperimentalPagingApi::class)
@@ -30,7 +31,18 @@ class ProgramRemoteMediator(
                     if (lastItem == null) {
                         1
                     } else {
-                        (state.pages.size / state.config.pageSize) + 1
+                        println("앵커" + state.anchorPosition)
+                        if (state.pages.isNotEmpty()) {
+                            val currentPageSize = state.pages.map { it.data.size }.sum()
+                            if (currentPageSize % state.config.pageSize != 0) {
+                                return MediatorResult.Success(endOfPaginationReached = true)
+                            } else {
+                                (currentPageSize / state.config.pageSize) + 1
+                            }
+                        } else {
+                            return MediatorResult.Success(endOfPaginationReached = true)
+                        }
+
                     }
                 }
             }
@@ -47,10 +59,11 @@ class ProgramRemoteMediator(
             }
 
 
-            MediatorResult.Success(endOfPaginationReached = programList.isEmpty())
-
+            MediatorResult.Success(endOfPaginationReached = programList.size % 10 != 0)
 
         } catch (e: HttpException) {
+            MediatorResult.Error(e)
+        } catch (e: Exception) {
             MediatorResult.Error(e)
         }
     }

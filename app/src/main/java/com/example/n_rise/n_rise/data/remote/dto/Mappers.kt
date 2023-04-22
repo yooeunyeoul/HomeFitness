@@ -44,8 +44,6 @@ fun ProgramEntity.toProgram(): Program {
             else -> {
                 ProgramStatus.None
             }
-        },
-        isWatching = false
-
+        }
     )
 }
