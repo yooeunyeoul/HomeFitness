@@ -28,16 +28,12 @@ import androidx.navigation.NavController
 import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.itemsIndexed
-import com.example.n_rise.n_rise.domain.model.Program
 import com.example.n_rise.n_rise.presentation.Screen
 import com.example.n_rise.n_rise.presentation.program_list.components.BannerScreen
 import com.example.n_rise.n_rise.presentation.program_list.components.CategoryScreen
 import com.example.n_rise.n_rise.presentation.program_list.components.ProgramHeaderScreen
 import com.example.n_rise.n_rise.presentation.program_list.components.ProgramListItem
 import com.example.n_rise.n_rise.presentation.util.toEncodeUrl
-import com.google.gson.Gson
-import java.net.URLEncoder
-import java.nio.charset.StandardCharsets
 
 @Composable
 fun ProgramListScreen(

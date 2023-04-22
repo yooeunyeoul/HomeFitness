@@ -35,14 +35,6 @@ fun ProgramListItem(
     modifier: Modifier = Modifier
 ) {
 
-    if (isWatching) {
-        val modifier = Modifier
-            .background(color = Gray_90)
-            .alpha(0.6f)
-
-    } else {
-        val modifier = Modifier
-    }
     Column(
         modifier = modifier
             .fillMaxWidth()
