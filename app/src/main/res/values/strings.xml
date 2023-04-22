@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">N_rise</string>
+    <string name="program">프로그램</string>
+    <string name="hot">인기</string>
+    <string name="on_going">진행중</string>
+    <string name="complete">완료</string>
 </resources>

@@ -1,6 +1,7 @@
 package com.example.n_rise.n_rise.data.remote.dto
 
 import com.example.n_rise.n_rise.data.local.ProgramEntity
+import com.example.n_rise.n_rise.domain.model.Banner
 import com.example.n_rise.n_rise.domain.model.Program
 import com.example.n_rise.n_rise.domain.util.ProgramStatus
 
@@ -45,5 +46,13 @@ fun ProgramEntity.toProgram(): Program {
                 ProgramStatus.None
             }
         }
+    )
+}
+
+fun BannerDto.toBanner(): Banner {
+    return Banner(
+        title = title,
+        description = description,
+        imageUrl = image_url
     )
 }

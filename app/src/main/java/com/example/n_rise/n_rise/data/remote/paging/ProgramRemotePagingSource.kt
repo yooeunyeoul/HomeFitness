@@ -6,6 +6,7 @@ import com.example.n_rise.n_rise.data.local.ProgramEntity
 import com.example.n_rise.n_rise.data.remote.HealthApi
 import com.example.n_rise.n_rise.data.remote.dto.toMap
 import com.example.n_rise.n_rise.data.remote.dto.toProgramEntity
+import kotlinx.coroutines.delay
 
 
 class ProgramRemotePagingSource(
@@ -15,7 +16,6 @@ class ProgramRemotePagingSource(
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, ProgramEntity> {
         return try {
             val next = params.key ?: 1
-
             val programs = api.getPrograms(pageSize = PAGE_SIZE, page = next)
             val badges = api.getBadges(programIdList = programs.map { it.id })
             val badgesMap = badges.toMap()

@@ -25,7 +25,7 @@ val nRiseTypography = Typography(
     ),
     h16 = TextStyle(
         fontWeight = FontWeight.Bold,
-        fontSize = 26.sp
+        fontSize = 16.sp
     ),
     h12 = TextStyle(
         fontWeight = FontWeight.Bold,

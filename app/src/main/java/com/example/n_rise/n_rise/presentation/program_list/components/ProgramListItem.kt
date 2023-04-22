@@ -1,16 +1,24 @@
 package com.example.n_rise.n_rise.presentation.program_list.components
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
@@ -22,33 +30,88 @@ import coil.request.ImageRequest
 import com.example.n_rise.n_rise.domain.model.Program
 import com.example.n_rise.n_rise.domain.util.ProgramStatus
 import com.example.n_rise.n_rise.presentation.program_list.ProgramState
+import com.example.n_rise.ui.theme.Gray_40
+import com.example.n_rise.ui.theme.Gray_80
+import com.example.n_rise.ui.theme.Gray_90
+import com.example.n_rise.ui.theme.nRiseTypography
 
 @Composable
 fun ProgramListItem(
     program: Program? = null,
     onItemClick: (Program?) -> Unit,
-    isWatching : Boolean = false
+    isWatching: Boolean = false,
+    modifier: Modifier = Modifier
 ) {
 
-    Row(
-        modifier = Modifier
+    if (isWatching) {
+        val modifier = Modifier
+            .background(color = Gray_90)
+            .alpha(0.6f)
+
+    } else {
+        val modifier = Modifier
+    }
+    Column(
+        modifier = modifier
             .fillMaxWidth()
-            .background(color = if(isWatching) Color.Gray else Color.White)
-            .height(300.dp)
             .clickable { onItemClick(program) }
-            .padding(22.dp),
-        verticalAlignment = Alignment.CenterVertically
+            .padding(start = 16.dp, end = 16.dp, bottom = 24.dp),
     ) {
-        AsyncImage(
-            model = ImageRequest.Builder(LocalContext.current)
-                .data(program?.image_url)
-                .crossfade(true).build(),
-            contentScale = ContentScale.FillWidth,
-            contentDescription = null,
-            modifier = Modifier
-                .size(86.dp)
-                .clip(CircleShape)
-        )
+        Column(
+            Modifier
+                .clip(RoundedCornerShape(7.6.dp))
+        ) {
+            Box(
+                Modifier
+                    .background(color = if (isWatching) Gray_90 else Color.Transparent)
+                    .alpha(if (isWatching) 0.6f else 1.0f)
+            ) {
+                AsyncImage(
+                    model = ImageRequest.Builder(LocalContext.current)
+                        .data(program?.image_url)
+                        .crossfade(true).build(),
+                    contentScale = ContentScale.FillWidth,
+                    contentDescription = null,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .aspectRatio(16f / 9f)
+                )
+            }
+
+            Row(
+                Modifier
+                    .fillMaxWidth()
+                    .background(Gray_80)
+                    .padding(start = 12.dp, end = 16.dp, bottom = 8.dp, top = 8.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Column() {
+                    Text(
+                        text = "${program?.level ?: ""} · 평균 ${program?.average_minute ?: ""}분 · ${program?.effect ?: ""}",
+                        style = nRiseTypography.body14,
+                        color = Color.White
+                    )
+                    Spacer(modifier = Modifier.height(2.dp))
+                    Text(
+                        text = "${program?.category}︱${program?.coachName}",
+                        style = nRiseTypography.body12,
+                        color = Gray_40
+                    )
+                }
+
+                Spacer(modifier = Modifier.weight(1f))
+                if (program != null) {
+                    when (program.status) {
+                        ProgramStatus.Complete -> OnCompleteChip()
+                        ProgramStatus.None -> {}
+                        ProgramStatus.OnGoing -> OnGoingChip()
+                    }
+                }
+
+
+            }
+
+        }
     }
 }
 

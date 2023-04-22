@@ -4,7 +4,9 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.text.TextStyle
+import javax.annotation.concurrent.Immutable
 
+@Immutable
 class Typography internal constructor(
     val h20 : TextStyle,
     val h18 : TextStyle,
@@ -48,6 +50,7 @@ class Typography internal constructor(
         body12 = body12.withDefaultFontFamily(defaultFontFamily)
     )
 }
+
 
 /**
  * @return [this] if there is a [FontFamily] defined, otherwise copies [this] with [default] as

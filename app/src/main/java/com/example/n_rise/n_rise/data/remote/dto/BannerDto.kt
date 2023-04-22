@@ -7,6 +7,5 @@ import kotlinx.serialization.Serializable
 data class BannerDto(
     val title: String,
     val description: String,
-    @SerialName("image_url")
-    val imageUrl: String
+    val image_url: String
 )
