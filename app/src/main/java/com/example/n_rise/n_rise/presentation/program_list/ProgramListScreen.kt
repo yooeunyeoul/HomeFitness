@@ -34,6 +34,7 @@ import com.example.n_rise.n_rise.presentation.program_list.components.BannerScre
 import com.example.n_rise.n_rise.presentation.program_list.components.CategoryScreen
 import com.example.n_rise.n_rise.presentation.program_list.components.ProgramHeaderScreen
 import com.example.n_rise.n_rise.presentation.program_list.components.ProgramListItem
+import com.example.n_rise.n_rise.presentation.util.toEncodeUrl
 import com.google.gson.Gson
 import java.net.URLEncoder
 import java.nio.charset.StandardCharsets
@@ -100,13 +101,7 @@ fun ProgramListScreen(
 
                             ProgramListItem(
                                 onItemClick = { program ->
-                                    val gson = Gson()
-                                    val objectString = gson.toJson(program, Program::class.java)
-                                    val encodeUrl = URLEncoder.encode(
-                                        objectString,
-                                        StandardCharsets.UTF_8.toString()
-                                    )
-                                    navController.navigate(Screen.ProgramDetailScreen.route+"/${encodeUrl}")
+                                    navController.navigate(Screen.ProgramDetailScreen.route + "/${program.toEncodeUrl { }}")
                                     viewModel.changeWatchingState(program)
                                 },
                                 program = program,
