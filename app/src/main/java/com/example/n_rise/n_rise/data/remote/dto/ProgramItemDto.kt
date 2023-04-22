@@ -1,4 +1,4 @@
-package com.example.n_rise.n_rise.data.data_source.remote.dto
+package com.example.n_rise.n_rise.data.remote.dto
 
 data class ProgramItemDto(
     val id: Int,//프로그램 고유 id

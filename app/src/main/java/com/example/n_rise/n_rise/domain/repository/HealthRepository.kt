@@ -1,8 +1,8 @@
 package com.example.n_rise.n_rise.domain.repository
 
-import com.example.n_rise.n_rise.data.data_source.remote.dto.BadgeDto
-import com.example.n_rise.n_rise.data.data_source.remote.dto.BannerDto
-import com.example.n_rise.n_rise.data.data_source.remote.dto.ProgramsDto
+import com.example.n_rise.n_rise.data.remote.dto.BadgeDto
+import com.example.n_rise.n_rise.data.remote.dto.BannerDto
+import com.example.n_rise.n_rise.data.remote.dto.ProgramsDto
 
 interface HealthRepository {
 

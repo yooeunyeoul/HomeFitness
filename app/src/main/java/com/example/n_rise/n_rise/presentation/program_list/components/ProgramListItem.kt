@@ -60,6 +60,8 @@ fun PreviewProgramItem() {
             coachName = "코치이름",
             category = "카테고리",
             title = "타이틀",
-            status = ProgramStatus.Complete
+            status = ProgramStatus.Complete,
+            isWatching = false,
+            id = 1
         ), onItemClick = {})
 }

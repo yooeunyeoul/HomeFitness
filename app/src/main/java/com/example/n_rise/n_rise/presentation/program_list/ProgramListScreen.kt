@@ -18,6 +18,8 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.style.TextAlign
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import androidx.paging.compose.collectAsLazyPagingItems
+import androidx.paging.compose.items
 import com.example.n_rise.n_rise.presentation.program_list.components.ProgramListItem
 
 @Composable
@@ -25,7 +27,7 @@ fun ProgramListScreen(
     navController: NavController,
     viewModel: ProgramListViewModel = hiltViewModel()
 ) {
-    val state = viewModel.state.value
+    val programs = viewModel.programPagingFlow.collectAsLazyPagingItems()
 
 
     Box(Modifier.fillMaxSize()) {
@@ -38,33 +40,33 @@ fun ProgramListScreen(
             ) {
             }
 
-
             LazyColumn(
                 Modifier
                     .fillMaxWidth()
             ) {
-                items(state.programs) { program ->
+                items(programs){program->
                     ProgramListItem(onItemClick = {
 
                     }, program = program)
+
                 }
             }
 
         }
 
-        if (state.error.isNotBlank()) {
-            Text(
-                text = state.error,
-                color = MaterialTheme.colorScheme.error,
-                textAlign = TextAlign.Center,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .align(Alignment.Center)
-            )
-        }
-        if (state.isLoading) {
-            CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
-        }
+//        if (state.error.isNotBlank()) {
+//            Text(
+//                text = state.error,
+//                color = MaterialTheme.colorScheme.error,
+//                textAlign = TextAlign.Center,
+//                modifier = Modifier
+//                    .fillMaxWidth()
+//                    .align(Alignment.Center)
+//            )
+//        }
+//        if (state.isLoading) {
+//            CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
+//        }
     }
 
 }

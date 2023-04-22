@@ -1,11 +1,13 @@
-package com.example.n_rise.n_rise.domain.model
+package com.example.n_rise.n_rise.data.local
 
+import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.example.n_rise.n_rise.data.remote.dto.ProgramItemDto
 import com.example.n_rise.n_rise.domain.util.ProgramStatus
 
-data class Program(
-    val id: Int,
+@Entity
+data class ProgramEntity(
+    @PrimaryKey
+    val id :Int,
     val image_url: String, //썸네일
     val level: String,//난이도
     val average_minute: Int, //운동 소요시간
@@ -13,6 +15,5 @@ data class Program(
     val coachName: String, //코치 정보
     val category: String, // 카테고리
     val title: String,// 프로그램 제목
-    val status: ProgramStatus, // 프로그램 상태]
-    val isWatching: Boolean = false // 시청했는지 유무
+    val status: String? // 프로그램 상태
 )
