@@ -8,9 +8,8 @@ import androidx.room.withTransaction
 import com.example.n_rise.n_rise.data.local.ProgramDatabase
 import com.example.n_rise.n_rise.data.local.ProgramEntity
 import com.example.n_rise.n_rise.data.remote.HealthApi
-import com.example.n_rise.n_rise.data.remote.dto.toMap
-import com.example.n_rise.n_rise.data.remote.dto.toProgramEntity
-import kotlinx.coroutines.delay
+import com.example.n_rise.n_rise.data.mappers.toMap
+import com.example.n_rise.n_rise.data.mappers.toProgramEntity
 import retrofit2.HttpException
 
 @OptIn(ExperimentalPagingApi::class)

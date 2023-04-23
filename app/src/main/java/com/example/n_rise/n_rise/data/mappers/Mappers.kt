@@ -1,6 +1,9 @@
-package com.example.n_rise.n_rise.data.remote.dto
+package com.example.n_rise.n_rise.data.mappers
 
 import com.example.n_rise.n_rise.data.local.ProgramEntity
+import com.example.n_rise.n_rise.data.remote.dto.BadgeDto
+import com.example.n_rise.n_rise.data.remote.dto.BannerDto
+import com.example.n_rise.n_rise.data.remote.dto.ProgramItemDto
 import com.example.n_rise.n_rise.domain.model.Banner
 import com.example.n_rise.n_rise.domain.model.Program
 import com.example.n_rise.n_rise.domain.util.ProgramStatus
